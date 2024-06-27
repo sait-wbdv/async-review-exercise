@@ -1,16 +1,18 @@
 "use strict";
 
 function fetchData() {
-  get("https://api.disneyapi.dev/character")
+  fetch("https://api.disneyapi.dev/character")
     .then((response) => {
-      if (/* if the response is not ok... */) {
-        throw new Er("Network response was not ok.");
+      if (!response.ok) {
+        throw new Error("Network response was not ok.");
       }
-      // return the data
+      return response.json();
     })
-    // add another link to the chain where the data is logged
+    .then((data) => {
+      console.log(data);
+    })
     .catch((error) => {
-      // log errors
+      console.error("Error fetching data:", error);
     });
 }
 

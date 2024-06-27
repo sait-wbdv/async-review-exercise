@@ -1,15 +1,13 @@
 "use strict";
 
-// Make this an asynchronous function
-function fetchData() {
+async function fetchData() {
   try {
-    // fetch data asynchronously
-    const response = fetch("https://api.disneyapi.dev/character");
-    // parse the data as .json()
-    console.log(response);
-    // add error handling
-  } catch () {
+    const response = await fetch("https://api.disneyapi.dev/character");
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
   }
 }
 
-// Execute the function
+fetchData();
